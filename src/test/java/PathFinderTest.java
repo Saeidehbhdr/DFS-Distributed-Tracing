@@ -30,21 +30,33 @@ public class PathFinderTest {
     void testExercise1() {
         PathFinderDfs pathFinderDfs = new PathFinderDfs(graph, a);
 
-        // Define the paths and call findPathLatency for each path
-        List<List<Node>> paths = Arrays.asList(
+        // test input 1. through 5.
+        // The average latency
+        List<List<Node>> averagePaths = Arrays.asList(
                 Arrays.asList(a, b, c),
                 Arrays.asList(a, d),
                 Arrays.asList(a, d, c),
                 Arrays.asList(a, e, b, c, d),
-                Arrays.asList(a, e, d),
-                Arrays.asList(c,e,b,c),
-                Arrays.asList(a, c),
-                Arrays.asList(b, b)
+                Arrays.asList(a, e, d)
         );
-
-        // Print the total latency for each path
-        for (List<Node> path : paths) {
+        for (List<Node> path : averagePaths) {
             System.out.println(pathFinderDfs.findPathLatency(path));
         }
+        // test input 6. through 7.
+        /* averagePaths.forEach(path -> System.out.println(pathFinderDfs.findAverageLatency(path)));
+        // Print the traces originating in service C with maximum of 3 hops
+        System.out.println(pathFinderDfs.findPathsWithMaxHops(c, c, 3));
+        // Print the traces originating in service C with maximum of 3 hops
+        System.out.println(pathFinderDfs.findPathsWithMaxHops(a, c, 4)); */
+
+        // test input 8. through 9.
+        // The length of the shortest trace (in terms of latency) between A and C.
+        System.out.println(pathFinderDfs.findShortestPathBellmanFord(a, c));
+        // The length of the shortest trace (in terms of latency) between B and B.
+        // TODO- from B to B there are negative weight edges
+        System.out.println(pathFinderDfs.findShortestPathBellmanFord(b, b));
+        // test input 10.
+        // The number of different traces from C to C
+        System.out.println(pathFinderDfs.findAllPaths(c , c));
     }
 }
