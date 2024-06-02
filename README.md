@@ -1,6 +1,6 @@
 ### **Instana Distributed Tracing**
 
-The progect is to find out if there are any microservices running on the
+The project is to find out if there are any microservices running on the
 server. If it finds such a microservice, it will start instrumenting that service and it starts tracking
 key performance indicators (KPI’s) of the HTTP connections between this service and its
 neighboring services by looking at the HTTP library calls that service is performing. One of
