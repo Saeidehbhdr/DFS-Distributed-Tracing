@@ -12,3 +12,16 @@ service A will also take 8ms as this depends on the underlying network infrastru
 
 using the Depth-first Search (DFS) to solve the exercise with Guava Value Graph (Google core library) that provides suitable methods for
 the implementation.
+```mermaid
+graph TD;
+    A-->B;
+    B-->C;
+    C-->D;
+    D-->C;
+    D-->E;
+    A-->D;
+    C-->E;
+    E-->B;
+    A-->E;
+```
+      
