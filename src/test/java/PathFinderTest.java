@@ -7,15 +7,15 @@ import java.util.List;
 
 public class PathFinderTest {
 
-    final Trace a = Trace.builder().id("A").build();
-    final Trace b = Trace.builder().id("B").build();
-    final Trace c = Trace.builder().id("C").build();
-    final Trace d = Trace.builder().id("D").build();
-    final Trace e = Trace.builder().id("E").build();
+    final Node a = Node.builder().id("A").build();
+    final Node b = Node.builder().id("B").build();
+    final Node c = Node.builder().id("C").build();
+    final Node d = Node.builder().id("D").build();
+    final Node e = Node.builder().id("E").build();
 
     // Create the graph
-    final ValueGraph<Trace, Integer> graph = ValueGraphBuilder.directed()
-            .<Trace, Integer>immutable()
+    final ValueGraph<Node, Integer> graph = ValueGraphBuilder.directed()
+            .<Node, Integer>immutable()
             .putEdgeValue(a, b, 5)
             .putEdgeValue(b, c, 4)
             .putEdgeValue(c, d, 8)
@@ -31,7 +31,7 @@ public class PathFinderTest {
         PathFinderDfs pathFinderDfs = new PathFinderDfs(graph, a);
 
         // Define the paths and call findPathLatency for each path
-        List<List<Trace>> paths = Arrays.asList(
+        List<List<Node>> paths = Arrays.asList(
                 Arrays.asList(a, b, c),
                 Arrays.asList(a, d),
                 Arrays.asList(a, d, c),
@@ -43,7 +43,7 @@ public class PathFinderTest {
         );
 
         // Print the total latency for each path
-        for (List<Trace> path : paths) {
+        for (List<Node> path : paths) {
             System.out.println(pathFinderDfs.findPathLatency(path));
         }
     }

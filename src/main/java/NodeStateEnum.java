@@ -1,10 +1,10 @@
-public enum TraceStateEnum {
+public enum NodeStateEnum {
     INVALID("NO SUCH TRACE");
 
     private final String message;
 
-    TraceStateEnum(String s) {
-        this.message = s;
+    NodeStateEnum(String message) {
+        this.message = message;
     }
 
     public String getMessage() {

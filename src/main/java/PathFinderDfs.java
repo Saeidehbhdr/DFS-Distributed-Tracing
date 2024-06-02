@@ -4,37 +4,35 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * This class will contain a boolean array to keep track of visited nodes and a method to perform the DFS.
- */
-public class PathFinderDfs {
-    private final Set<Trace> visited;
-    private final ValueGraph<Trace, Integer> graph;
 
-    public PathFinderDfs(ValueGraph<Trace, Integer> G, Trace s) {
-        visited = new HashSet<>();
-        this.graph = G;
-        dfs(G, s);
+public class PathFinderDfs {
+    private final Set<Node> visitedNodes;
+    private final ValueGraph<Node, Integer> graph;
+
+    public PathFinderDfs(ValueGraph<Node, Integer> valueGraph, Node node) {
+        visitedNodes = new HashSet<>();
+        this.graph = valueGraph;
+        dfs(valueGraph, node);
     }
 
-    private void dfs(ValueGraph<Trace, Integer> G, Trace v) {
-        visited.add(v);
-        for (Trace w : G.adjacentNodes(v)) {
-            if (!visited.contains(w)) {
-                dfs(G, w);
+    private void dfs(ValueGraph<Node, Integer> valueGraph, Node node) {
+        visitedNodes.add(node);
+        for (Node graphNode : valueGraph.adjacentNodes(node)) {
+            if (!visitedNodes.contains(graphNode)) {
+                dfs(valueGraph, graphNode);
             }
         }
     }
 
-    public String findPathLatency(List<Trace> path) {
+    public String findPathLatency(List<Node> path) {
         int totalLatency = 0;
         for (int i = 0; i < path.size() - 1; i++) {
-            Trace current = path.get(i);
-            Trace next = path.get(i + 1);
-            if (graph.hasEdgeConnecting(current, next)) {
-                totalLatency += graph.edgeValue(current, next).get();
+            Node currentNode = path.get(i);
+            Node nextNode = path.get(i + 1);
+            if (graph.hasEdgeConnecting(currentNode, nextNode)) {
+                totalLatency += graph.edgeValue(currentNode, nextNode).get();
             } else {
-                return TraceStateEnum.INVALID.getMessage();
+                return NodeStateEnum.INVALID.getMessage();
             }
         }
         return String.valueOf(totalLatency);

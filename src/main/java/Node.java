@@ -3,7 +3,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class Trace {
+public class Node {
     public String id;
 
 }
